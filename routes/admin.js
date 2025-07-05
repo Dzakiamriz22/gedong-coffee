@@ -12,6 +12,8 @@ const {
   deleteBerita
 } = require('../controllers/beritaController');
 const { login } = require('../controllers/authController');
+const { updateAbout } = require('../controllers/aboutController');
+
 
 // Admin: CRUD produk
 router.post('/produk', isAdmin, createProduk);
@@ -25,5 +27,9 @@ router.post('/login', login);
 router.post('/berita', isAdmin, createBerita);
 router.put('/berita/:id', isAdmin, updateBerita);
 router.delete('/berita/:id', isAdmin, deleteBerita);
+
+// Update About Us
+router.put('/about', isAdmin, updateAbout);
+
 
 module.exports = router;
