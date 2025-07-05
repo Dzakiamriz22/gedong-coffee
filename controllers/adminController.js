@@ -1,11 +1,11 @@
 const supabase = require('../utils/supabase');
 
 exports.createProduk = async (req, res) => {
-  const { nama, deskripsi, harga, gambar, kategori } = req.body;
+  const { nama, deskripsi, harga, gambar, kategori, is_highlight = false, is_best_seller = false } = req.body;
 
-  const { data, error } = await supabase
-    .from('produk')
-    .insert([{ nama, deskripsi, harga, gambar, kategori }]);
+  const { data, error } = await supabase.from('produk').insert([
+    { nama, deskripsi, harga, gambar, kategori, is_highlight, is_best_seller }
+  ]);
 
   if (error) return res.status(500).json({ error });
   res.json(data);
