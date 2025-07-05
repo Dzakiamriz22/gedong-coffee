@@ -6,6 +6,8 @@ const {
   getBeritaById
 } = require('../controllers/beritaController');
 const { getAbout } = require('../controllers/aboutController');
+const { createKontak } = require('../controllers/contactController');
+const { createSubscriber } = require('../controllers/subscriberController');
 
 // Guest: Lihat list produk dan detail
 router.get('/produk', getProduk);
@@ -17,5 +19,9 @@ router.get('/berita/:id', getBeritaById);
 
 // Get About Us
 router.get('/about', getAbout);
+
+// SUbscribe & Contact
+router.post('/kontak', createKontak);
+router.post('/subscribe', createSubscriber);
 
 module.exports = router;

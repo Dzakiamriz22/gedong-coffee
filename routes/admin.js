@@ -13,6 +13,14 @@ const {
 } = require('../controllers/beritaController');
 const { login } = require('../controllers/authController');
 const { updateAbout } = require('../controllers/aboutController');
+const {
+  getKontak,
+  deleteKontak
+} = require('../controllers/contactController');
+const {
+  getSubscriber,
+  deleteSubscriber
+} = require('../controllers/subscriberController');
 
 
 // Admin: CRUD produk
@@ -30,6 +38,12 @@ router.delete('/berita/:id', isAdmin, deleteBerita);
 
 // Update About Us
 router.put('/about', isAdmin, updateAbout);
+
+// Subscribe & Message
+router.get('/kontak', isAdmin, getKontak);
+router.delete('/kontak/:id', isAdmin, deleteKontak);
+router.get('/subscriber', isAdmin, getSubscriber);
+router.delete('/subscriber/:id', isAdmin, deleteSubscriber);
 
 
 module.exports = router;
