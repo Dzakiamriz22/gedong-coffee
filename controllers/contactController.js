@@ -32,3 +32,23 @@ exports.deleteKontak = async (req, res) => {
   if (error) return res.status(500).json({ error });
   res.json({ message: 'Pesan kontak berhasil dihapus', data });
 };
+
+// ADMIN: Tandai sebagai dibaca / bintang
+exports.updateKontakStatus = async (req, res) => {
+  const { id } = req.params;
+  const { is_read, is_starred } = req.body;
+
+  const { data, error } = await supabase
+    .from('kontak')
+    .update({
+      ...(is_read !== undefined && { is_read }),
+      ...(is_starred !== undefined && { is_starred }),
+      updated_at: new Date()
+    })
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) return res.status(500).json({ error });
+  res.json({ message: 'Status pesan diperbarui', data });
+};

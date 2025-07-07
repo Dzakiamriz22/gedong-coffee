@@ -21,6 +21,11 @@ const {
   getSubscriber,
   deleteSubscriber
 } = require('../controllers/subscriberController');
+const {
+  getKontak,
+  deleteKontak,
+  updateKontakStatus
+} = require('../controllers/contactController');
 
 
 // Admin: CRUD produk
@@ -42,6 +47,7 @@ router.put('/about', isAdmin, updateAbout);
 // Subscribe & Message
 router.get('/kontak', isAdmin, getKontak);
 router.delete('/kontak/:id', isAdmin, deleteKontak);
+router.put('/kontak/:id', isAdmin, updateKontakStatus);
 router.get('/subscriber', isAdmin, getSubscriber);
 router.delete('/subscriber/:id', isAdmin, deleteSubscriber);
 

@@ -10,7 +10,7 @@ async function isAdmin(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.admin = decoded; // simpan data admin di req
+    req.admin = decoded;
     next();
   } catch (err) {
     return res.status(403).json({ message: 'Token tidak valid' });
