@@ -19,8 +19,9 @@ const {
 } = require('../controllers/subscriberController');
 const {
   getKontak,
-  deleteKontak,
-  updateKontakStatus
+  getKontakById,
+  updateKontakStatus,
+  deleteKontak
 } = require('../controllers/contactController');
 
 
@@ -44,6 +45,7 @@ router.put('/about', isAdmin, updateAbout);
 router.get('/kontak', isAdmin, getKontak);
 router.delete('/kontak/:id', isAdmin, deleteKontak);
 router.put('/kontak/:id', isAdmin, updateKontakStatus);
+router.get('/kontak/:id', isAdmin, getKontakById);
 router.get('/subscriber', isAdmin, getSubscriber);
 router.delete('/subscriber/:id', isAdmin, deleteSubscriber);
 

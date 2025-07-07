@@ -52,3 +52,19 @@ exports.updateKontakStatus = async (req, res) => {
   if (error) return res.status(500).json({ error });
   res.json({ message: 'Status pesan diperbarui', data });
 };
+
+// ADMIN: Ambil detail satu pesan
+exports.getKontakById = async (req, res) => {
+  const { id } = req.params;
+
+  const { data, error } = await supabase
+    .from('kontak')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) return res.status(500).json({ error });
+  if (!data) return res.status(404).json({ message: 'Pesan tidak ditemukan' });
+
+  res.json(data);
+};
