@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const isAdmin = require('../middlewares/auth');
 const {
   createProduk,
@@ -26,8 +29,8 @@ const {
 
 
 // Admin: CRUD produk
-router.post('/produk', isAdmin, createProduk);
-router.put('/produk/:id', isAdmin, updateProduk);
+router.post('/produk', isAdmin, upload.single('gambar'), createProduk);
+router.put('/produk/:id', isAdmin, upload.single('gambar'), updateProduk);
 router.delete('/produk/:id', isAdmin, deleteProduk);
 
 // Admin login
