@@ -14,10 +14,6 @@ const {
 const { login } = require('../controllers/authController');
 const { updateAbout } = require('../controllers/aboutController');
 const {
-  getKontak,
-  deleteKontak
-} = require('../controllers/contactController');
-const {
   getSubscriber,
   deleteSubscriber
 } = require('../controllers/subscriberController');
