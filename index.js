@@ -9,7 +9,4 @@ app.use(express.json());
 app.use('/api/guest', require('./routes/guest'));
 app.use('/api/admin', require('./routes/admin'));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
-
-module.exports = app;
+module.exports = app; // ⬅️ cukup export app
