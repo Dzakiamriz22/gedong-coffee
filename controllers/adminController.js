@@ -62,9 +62,10 @@ async function deleteImageFromSupabase(imageUrl) {
     }
 }
 
+// createProduk
 exports.createProduk = async (req, res) => {
     try {
-        const { nama, deskripsi, harga, is_highlight, is_best_seller, shopee_url } = req.body;
+        const { nama, deskripsi, harga, is_highlight, is_best_seller, shopee_url, kategori } = req.body;
         const imageFile = req.file;
 
         if (!nama || !harga) {
@@ -83,7 +84,8 @@ exports.createProduk = async (req, res) => {
             gambar: gambarUrl,
             is_highlight: is_highlight === 'true' || is_highlight === true,
             is_best_seller: is_best_seller === 'true' || is_best_seller === true,
-            shopee_url: shopee_url || null
+            shopee_url: shopee_url || null,
+            kategori: kategori || null, // ⬅️ tambahkan ini
         };
 
         const { data, error } = await supabase
@@ -102,6 +104,8 @@ exports.createProduk = async (req, res) => {
     }
 };
 
+
+// updateProduk
 exports.updateProduk = async (req, res) => {
     try {
         const { id } = req.params;
@@ -146,6 +150,7 @@ exports.updateProduk = async (req, res) => {
         }
 
         cleanUpdateData.gambar = gambarUrl;
+        cleanUpdateData.kategori = cleanUpdateData.kategori || null; // ⬅️ tambahkan ini
 
         const { data, error } = await supabase
             .from('produk')
