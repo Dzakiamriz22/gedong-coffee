@@ -20,7 +20,7 @@ router.get('/berita/:id', getBeritaById);
 // Get About Us
 router.get('/about', getAbout);
 
-// SUbscribe & Contact
+// Subscribe & Contact
 router.post('/kontak', createKontak);
 router.post('/subscribe', createSubscriber);
 

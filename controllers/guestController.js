@@ -1,12 +1,16 @@
 const supabase = require('../utils/supabase');
 
 exports.getProduk = async (req, res) => {
-  const { search = '', highlight, best_seller } = req.query;
+  const { search = '', highlight, best_seller, kategori } = req.query;
 
-  let query = supabase.from('produk').select('*').ilike('nama', `%${search}%`);
+  let query = supabase
+    .from('produk')
+    .select('*')
+    .ilike('nama', `%${search}%`);
 
   if (highlight === 'true') query = query.eq('is_highlight', true);
   if (best_seller === 'true') query = query.eq('is_best_seller', true);
+  if (kategori && kategori !== 'all') query = query.eq('kategori', kategori);
 
   const { data, error } = await query;
 
